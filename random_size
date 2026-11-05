@@ -1,0 +1,31 @@
+import os
+import random
+import time
+from datetime import datetime
+
+OUTPUT_DIR = "generated_files"
+
+#File size range: 1 MB to 100 MB
+MIN_SIZE = 1 * 1024 * 1024
+MAX_SIZE = 100 * 1024 * 1024
+
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+while True:
+
+    # Generate random file size
+    file_size = random.randint(MIN_SIZE, MAX_SIZE)
+
+    # Generate unique filename
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename = f"random_file_{timestamp}.bin"
+    filepath = os.path.join(OUTPUT_DIRc filename)
+
+    # Generate random content
+    with open(filepath, "wb") as f:
+        f.write(os.urandom(file_size))
+
+    print(f"Created: {filepath} | Size: {file_size / (1024 * 1024):.2f} MB")
+
+    #Wait 1 hour
+    time.sleep(3600)
